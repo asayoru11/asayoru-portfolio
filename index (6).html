@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あさよる | 謎解き作家ポートフォリオ</title>
+  <meta name="description" content="朝と夜が好きな謎解き作家・あさよるのポートフォリオサイト。書籍制作、イベント謎解き、企業への一枚謎提供など。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #f7f5f0;
+      --bg-card: #ffffff;
+      --bg-soft: #f0ebe3;
+      --accent: #b8860b;
+      --accent-soft: #c9a227;
+      --text-main: #2c2a26;
+      --text-muted: #6b6560;
+      --purple: #7a6b9a;
+      --border: rgba(184, 134, 11, 0.25);
+      --glow: rgba(201, 162, 39, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-main);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at 15% 10%, rgba(201, 162, 39, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 90%, rgba(122, 107, 154, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #8a6508;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(247, 245, 240, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: background 0.3s;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      background: var(--glow);
+    }
+
+    .hero h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .hero .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: linear-gradient(135deg, #c9a227, #b8860b);
+      color: #fff;
+      font-weight: 600;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(184, 134, 11, 0.3);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      margin-left: 0.8rem;
+    }
+    .btn-outline:hover {
+      background: var(--glow);
+      color: #8a6508;
+      box-shadow: none;
+    }
+
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      font-size: 0.95rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+    }
+
+    .about-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .about-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-item {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+    .stat-num {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .work-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    }
+
+    .work-img {
+      height: 180px;
+      background: linear-gradient(135deg, #f0ebe3, #e8e0d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .work-img::after {
+      content: attr(data-label);
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      color: rgba(184, 134, 11, 0.3);
+      letter-spacing: 0.1em;
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .work-img.has-img::after {
+      display: none;
+    }
+
+    .work-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      background: rgba(122, 107, 154, 0.12);
+      color: var(--purple);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .work-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.45;
+      color: var(--text-main);
+    }
+
+    .work-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    .work-meta {
+      font-size: 0.8rem;
+      color: var(--accent);
+      opacity: 0.9;
+      margin-bottom: 0.8rem;
+    }
+
+    .work-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+    .work-links a {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--glow);
+      color: var(--accent);
+      transition: all 0.2s;
+    }
+    .work-links a:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .activity-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 12px;
+      padding: 1.3rem 1.5rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+    .activity-item:hover {
+      border-color: var(--border);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    .activity-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--glow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .activity-item h4 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-main);
+    }
+    .activity-item p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .contact-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    }
+    .contact-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(201,162,39,0.1), transparent 60%);
+      pointer-events: none;
+    }
+
+    .contact-box h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .contact-box p {
+      color: var(--text-muted);
+      max-width: 420px;
+      margin: 0 auto 2rem;
+      line-height: 1.9;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 100px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: var(--bg-soft);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .social-btn:hover {
+      border-color: var(--accent);
+      background: var(--glow);
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(247, 245, 240, 0.98);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      nav ul.open {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+      .btn-outline {
+        margin-left: 0;
+        margin-top: 0.8rem;
+      }
+      .hero .btn-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">あさよる</div>
+      <button class="menu-toggle" aria-label="メニュー">☰</button>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#works">Works</a></li>
+          <li><a href="#activity">Activity</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">NAZOTOKI CREATOR</div>
+      <h1>あさよる</h1>
+      <p class="subtitle">朝と夜が好きな謎解き作家</p>
+      <p>言葉遊びとひらめきで、日常を少し不思議にする謎を作り続けています。</p>
+      <p>書籍・イベント・企業案件など、さまざまな場所で謎解きをお届けしています。</p>
+      <div class="btn-group">
+        <a href="#contact" class="btn">ご依頼・ご相談はこちら</a>
+        <a href="https://x.com/asayoru11" target="_blank" rel="noopener" class="btn btn-outline">Xを見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title fade-in">About</h2>
+    <p class="section-desc fade-in">謎解き作家としてのスタンス</p>
+    <div class="about-grid">
+      <div class="about-card fade-in">
+        <h3>ひらめきを届ける</h3>
+        <p>
+          知識に頼らない「ひらめき」を大切にしています。<br>
+          イラストや言葉の裏側に隠れた発見を、誰でも楽しめる形で届けたいと思っています。<br><br>
+          朝と夜——静かな時間にふと浮かぶアイデアを、丁寧に形にしています。
+        </p>
+      </div>
+      <div class="stats fade-in">
+        <div class="stat-item">
+          <div class="stat-num">12k+</div>
+          <div class="stat-label">Xフォロワー</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2</div>
+          <div class="stat-label">書籍参加</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">イベント</div>
+          <div class="stat-label">謎制作実績</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">企業</div>
+          <div class="stat-label">一枚謎提供実績</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="works">
+    <h2 class="section-title fade-in">Works</h2>
+    <p class="section-desc fade-in">これまでに関わった主な作品・制作</p>
+    <div class="works-grid">
+
+      <article class="work-card fade-in">
+        <div class="work-img" data-label="BOOK"></div>
+        <div class="work-body">
+          <span class="work-tag">書籍</span>
+          <h3>イラスト1枚で頭がよくなる<br>毎日なぞときドリル366</h3>
+          <p>宝島社刊。SNS人気クリエイター5名による共著。全366問のうち、あさよるが約70問＋新作を担当。言葉遊びの発見と楽しさを詰め込みました。</p>
+          <div class="work-meta">2025年9月発売 / 宝島社</div>
+          <div class="work-links">
+            <a href="https://www.amazon.co.jp/%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%881%E6%9E%9A%E3%81%A7%E9%A0%AD%E3%81%8C%E3%82%88%E3%81%8F%E3%81%AA%E3%82%8B-%E6%AF%8E%E6%97%A5%E3%81%AA%E3%81%9E%E3%81%A8%E3%81%8D%E3%83%89%E3%83%AA%E3%83%AB366-%E3%81%82%E3%81%95%E3%82%88%E3%82%8B/dp/429907128X" target="_blank" rel="noopener">Amazonで見る</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card fade-in">
+        <div class="work-img" data-label="BOOK"></div>
+        <div class="work-body">
+          <span class="work-tag">書籍・謎制作</span>
+          <h3>謎ガタリ: 一福寺の七不思議とふたりの願い</h3>
+          <p>学研刊の新感覚児童書。物語を読み進めながら謎を解くスタイル。あさよるが本格的な謎制作を担当。本になる前に朝日小学生新聞で連載され、大きな反響を呼びました。</p>
+          <div class="work-meta">2026年〜 / 学研</div>
+          <div class="work-links">
+            <a href="https://prtimes.jp/main/html/rd/p/000009031.000002535.html" target="_blank" rel="noopener">PR TIMESを見る</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card fade-in">
+        <div class="work-img" data-label="EVENT"></div>
+        <div class="work-body">
+          <span class="work-tag">イベント謎制作</span>
+          <h3>100対100 Kumarry恋活<br>～謎解き×スイーツ～</h3>
+          <p>熊本で開催された恋活イベントの謎解きを制作。披露宴会場という特別な空間を活かした仕掛けを含む謎解き公演を担当しました。地元・熊本での制作経験です。</p>
+          <div class="work-meta">2026年6月 / くまもと出会いサポートセンター</div>
+          <div class="work-links">
+            <a href="https://www.msc-kumamoto.jp/event/list/detail.php?id=47" target="_blank" rel="noopener">イベント詳細を見る</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card fade-in">
+        <div class="work-img has-img">
+          <img src="https://pbs.twimg.com/media/GbvVoKNakAAzdz0.jpg" alt="グーネット謎解き" loading="lazy">
+        </div>
+        <div class="work-body">
+          <span class="work-tag">企業案件・一枚謎</span>
+          <h3>企業公式アカウントへの<br>一枚謎提供</h3>
+          <p>グーネット公式（プロトコーポレーション）や講談社『ハンドレッドノート』公式など、企業様のXアカウント向けに一枚謎・クイズを制作・提供。公式投稿として多くの方に楽しんでいただきました。</p>
+          <div class="work-meta">2024年〜 / グーネット・ハンドレッドノート 他</div>
+          <div class="work-links">
+            <a href="https://x.com/Goonet_Director/status/1854310559715655934" target="_blank" rel="noopener">グーネット①</a>
+            <a href="https://x.com/Goonet_Director/status/1859384002077131159" target="_blank" rel="noopener">グーネット②</a>
+            <a href="https://x.com/hundrednote100/status/1779464711299600651" target="_blank" rel="noopener">ハンドレッドノート</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card fade-in">
+        <div class="work-img has-img">
+          <img src="https://pbs.twimg.com/media/GXVopxQbUAEkygz.jpg" alt="謎解き爺さんの爆弾金庫" loading="lazy">
+        </div>
+        <div class="work-body">
+          <span class="work-tag">持ち帰り謎・商品</span>
+          <h3>謎解き爺さんの爆弾金庫</h3>
+          <p>UUUMとの取り組みで、Xで人気の謎解きクリエイター3名によるコンビニで印刷できる持ち帰り謎。ファミリーマート・ローソンなど全国のコンビニで販売されました。</p>
+          <div class="work-meta">2024年9月〜 / UUUM・eプリント</div>
+          <div class="work-links">
+            <a href="https://x.com/asayoru11/status/1834502276859523440" target="_blank" rel="noopener">X投稿を見る</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="activity">
+    <h2 class="section-title fade-in">Activity</h2>
+    <p class="section-desc fade-in">日常的な活動</p>
+    <div class="activity-list">
+      <div class="activity-item fade-in">
+        <div class="activity-icon">💡</div>
+        <div>
+          <h4>Xでの定期謎出題</h4>
+          <p>不定期でオリジナルの謎解きを出題。フォロワーと一緒に考える時間を大切にしています。言葉遊びやイラストを使った問題が中心です。</p>
+        </div>
+      </div>
+      <div class="activity-item fade-in">
+        <div class="activity-icon">🏢</div>
+        <div>
+          <h4>企業向け一枚謎の制作</h4>
+          <p>企業公式アカウントの企画として、一枚絵や短い形式の謎解きを制作。ブランドや商品の世界観に合わせた問題を提供しています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-box fade-in">
+      <h2>Contact</h2>
+      <p>謎解き制作のご依頼・ご相談はXのDMからお気軽にどうぞ。</p>
+      <div class="social-links">
+        <a href="https://x.com/asayoru11" target="_blank" rel="noopener" class="social-btn">
+          <span>𝕏</span> @asayoru11
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 あさよる / Sample Portfolio<br>
+    このサイトはサンプルです。実際の公開時は画像・詳細を差し替えてご利用ください。</p>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => menu.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
